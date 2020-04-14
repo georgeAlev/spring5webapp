@@ -10,8 +10,12 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     private String title;
     private String isbn;
+
+    @ManyToOne
+    private Publisher publisher;
 
     @ManyToMany
     @JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"),
@@ -40,6 +44,10 @@ public class Book {
         return isbn;
     }
 
+    public Publisher getPublisher() {
+        return publisher;
+    }
+
     public Set<Author> getAuthors() {
         return authors;
     }
@@ -57,10 +65,13 @@ public class Book {
         this.isbn = isbn;
     }
 
+    public void setPublisher(Publisher publisher) {
+        this.publisher = publisher;
+    }
+
     public void setAuthors(Set<Author> authors) {
         this.authors = authors;
     }
-
 
     @Override
     public String toString() {
@@ -68,6 +79,7 @@ public class Book {
         sb.append("id=").append(id);
         sb.append(", title='").append(title).append('\'');
         sb.append(", isbn='").append(isbn).append('\'');
+        sb.append(", publisher=").append(publisher);
         sb.append(", authors=").append(authors);
         sb.append('}');
         return sb.toString();

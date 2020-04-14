@@ -59,7 +59,6 @@ public class Author{
         this.books = books;
     }
 
-
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Author{");
